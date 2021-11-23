@@ -63,7 +63,7 @@ def convert_large_rules(grammar):
                 grammar.insert(rule_index, new_rule)
         y += 1
 
-def convert_unit_productions(grammar):
+def convert_unit_productions(grammar, terminal, terminal_rule):
 # I. S. grammar berbentuk list of list Production Rule suatu CFG
 # F. S. Menangani grammar yang memiliki unit production
 #       Contoh: Terdapat production Rule A -> B dan B -> C D akan diubah 
