@@ -2,15 +2,20 @@ def cyk_algorithm(grammar, tokenized_input = []):
 
     cyk_Table = [[[] for j in range(i)] for i in range(len(tokenized_input), 0, -1)]
 
+    print(cyk_Table)
     #Inisialisasi baris pertama
-    #for rule in grammar:
-        #print(rule[1])
+    # for i, rule in enumerate(grammar):
+    #     if (len(rule) <= 1):
+    #         print(i)
+    #         print(rule)
     for i, token in enumerate(tokenized_input):
         for rule in grammar:
             if rule[1] == token and rule[0] not in cyk_Table[0][i]:
                 cyk_Table[0][i].append(rule[0])
     print()
-    print(cyk_Table)
+    print(cyk_Table[0])
+    print(len(cyk_Table[0]))
+    print(len(tokenized_input))
 
     #Mengisi sisa table
     for i in range(1, len(cyk_Table)):
@@ -19,22 +24,22 @@ def cyk_algorithm(grammar, tokenized_input = []):
                 left_cell = cyk_Table[k][j]
                 right_cell = cyk_Table[i-k-1][k+j+1]
 
-                if (left_cell != [] and right_cell != []):
-                    for left in left_cell:
-                        for right in right_cell:
-                            target = []
-                            target.append(left)
-                            target.append(right)
-                            for rule in grammar:
-                                if rule[1:3] == target and rule[0] not in cyk_Table[i][j]:
-                                    cyk_Table[i][j].append(rule[0])
-                
+                for left in left_cell:
+                    for right in right_cell:
+                        target = []
+                        target.append(left)
+                        target.append(right)
+                        
+                        for rule in grammar:
+                            if rule[1:3] == target and rule[0] not in cyk_Table[i][j]:
+                                cyk_Table[i][j].append(rule[0])
+
                 # print(f"{i} {j} {k}")
                 # print(left_cell)
                 # print(right_cell)
                 # print(cyk_Table[i][j])
                 # print("--------------")
-        
+    
     #Check if accepted
     print("---------Final-----------")
     for table in cyk_Table:

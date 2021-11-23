@@ -71,10 +71,6 @@ def convert_unit_productions(grammar, terminal, terminal_rule):
 #       Dalam bentuk list: ['A', 'B'] dan ['B','C','D'] menjadi
 #       ['A','C','D'].
     
-    #terminal, terminal_rule = read_terminal('terminal.txt')
-    terminal = ['import', 'from', 'as', 'True', 'False', 'def', 'None', 'with', 'case', 'return', 'continue', 'break', 'pass', 'raise', 'in', 'class', '+', '-', '+', '*', '/', '%', 'and', 'or', 'not', '=', '>', '<', 'if', 'else', 'elif','while', 'for', 'word', 'const', 'input', ':', ',', '.', '[', ']', '(', ')', "'", '"', "'''", '#', 'range', 'print', '!', 'open', 'write', 'num', 'self', 'len', 'IOERROR', 'ValueError', 'ZeroDivisionError', 'ImportError', 'NameError', 'TypeError']
-    terminal_rule = ['NUM', 'BOOL', 'ALPHABET', 'QUOTE_MARK', 'POINT', 'IF', 'ELIF', 'ELSE', 'IMPORT', 'FROM', 'AS', 'DEF', 'NONE', 'WITH', 'RETURN', 'CONTINUE', 'BREAK', 'PASS', 'RAISE', 'IN', 'CLASS', 'MINUS', 'PLUS', 'MUL', 'DIV', 'MOD', 'AND', 'OR', 'NOT', 'EQUAL', 'WHILE', 'FOR', 'INPUT', 'COLON', 'COMMA', 'OP_SQ_BRACK', 'CS_SQ_BRACK', 'OP_BRACK', 'CS_BRACK', 'GREATER', 'LESS', 'DQUOTE_MARK', 'HASHTAG', 'RANGE', 'PRINT', 'EXC_MARK', 'OPEN', 'SELF', 'RELATION_OPERATOR']
-
     j = 0
     while j < len(grammar):
         if ((len(grammar[j]) == 2) and (grammar[j][1] in terminal_rule)):
@@ -147,7 +143,7 @@ def write_to_file(grammar):
     file.close()
 
 
-def convert_grammar(filename):
+def convert_grammar(filename, terminal, terminal_rule):
 # I. S. filename merupakan suatu file berisi production rule suatu CFG
 # F. S. Menulis suatu file dengan nama ditentukan user yang berisi bentuk CNF 
 #       sesuai dengan langkah-langkah penyederhanaan CFG menjadi CNF dari 
@@ -157,7 +153,7 @@ def convert_grammar(filename):
         if (len(rule) == 0):
             grammar.remove(rule)
     
-    convert_unit_productions(grammar)
+    convert_unit_productions(grammar, terminal, terminal_rule)
     convert_large_rules(grammar)
     write_to_file(grammar)
 
