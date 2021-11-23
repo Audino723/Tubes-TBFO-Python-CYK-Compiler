@@ -5,19 +5,19 @@ def varname_checker(word):
 	valid_prefix = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I', 'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z', '_']
 
 	if(word[0] in valid_prefix):
-		return 'alpha'
+		return 'word'
 	else:
 		if(word[0] in number):
 			for i in range(1, len(word)):
 				if(word[i] not in number):
 					return 'undef'
 
-			return 'int'
+			return 'num'
 		else:
 			return 'undef'
 
 
-def tokenize_file(filePath, terminal):
+def tokenize_file(filePath):
 	file = open(filePath, 'r')
 	lines = file.readlines()
 	file.close()
@@ -40,6 +40,7 @@ def tokenize_file(filePath, terminal):
 	tokens = ' '.join(tokens).split()
 
 	# Part 2: Ubah array of string jadi array of modified string tergantung terminal
+	terminal = ['import', 'from', 'as', 'True', 'False', 'def', 'None', 'with', 'case', 'return', 'continue', 'break', 'pass', 'raise', 'in', 'class', '+', '-', '+', '*', '/', '%', 'and', 'or', 'not', '=', '>', '<', 'if', 'else', 'elif','while', 'for', 'word', 'const', 'input', ':', ',', '.', '[', ']', '(', ')', '=', '==', '!=', '>=', '<=', '>', '<', "'", '"', "'''", '#', 'range', 'print', '!', 'open', 'write', 'num', 'self', 'len', 'IOERROR', 'ValueError', 'ZeroDivisionError', 'ImportError', 'NameError', 'TypeError']
 
 	string_skip = False
 	for token in tokens:
