@@ -40,7 +40,7 @@ def tokenize_file(filePath):
 	tokens = ' '.join(tokens).split()
 
 	# Part 2: Ubah array of string jadi array of modified string tergantung terminal
-	terminal = ['import', 'from', 'as', 'True', 'False', 'def', 'global', 'None', 'with', 'case', 'return', 'continue', 'break', 'pass', 'raise', 'in', 'class', 'is', '-', '+', '*', '/', '%', 'and', 'or', 'not', '=', '>', '<', 'if', 'else', 'elif','while', 'for', 'word', 'const', 'input', ':', ',', '.', '[', ']', '(', ')', '=', '>', '<', "'", '"', '#', 'range', 'print', '!', 'open', 'write', 'num', 'self', 'IOERROR', 'ValueError', 'ZeroDivisionError', 'ImportError', 'NameError', 'TypeError']
+	terminal = ['import', 'from', 'as', 'True', 'False', 'def', 'None', 'with', 'case', 'return', 'continue', 'break', 'pass', 'raise', 'in', 'class', '+', '-', '+', '*', '/', '%', 'and', 'or', 'not', '=', '>', '<', 'if', 'else', 'elif','while', 'for', 'word', 'const', 'input', ':', ',', '.', '[', ']', '(', ')', '=', '==', '!=', '>=', '<=', '>', '<', "'", '"', "'''", '#', 'range', 'print', '!', 'open', 'write', 'num', 'self', 'len', 'IOERROR', 'ValueError', 'ZeroDivisionError', 'ImportError', 'NameError', 'TypeError']
 
 	string_skip = False
 	for token in tokens:
