@@ -1,1 +1,1 @@
-a = input("ASDFASD")
+asd ("Asdf")
