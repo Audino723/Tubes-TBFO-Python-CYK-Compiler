@@ -1,29 +1,3 @@
-def read_terminal(filename):
-# Membaca file terminal dan production rule yang menyangkut terminal
-# dan menyimpannya dalam list of string
-# Fungsi mengembalikan terminal yang berisi list of string terminal dam
-# mengembalikan terminal_rule yang berisi list of string variabel yang menghasilkan terminal
-
-    terminalfile = open(filename, "r")
-    terminaltemp = terminalfile.readlines()
-    terminalfile.close()
-
-    terminal = []
-    for line in terminaltemp:
-        linenew = line.replace("\n", "")
-        terminal.append(linenew)
-
-    terminal_rulefile = open("terminal_rule.txt", "r")
-    terminal_ruletemp = terminal_rulefile.readlines()
-    terminal_rulefile.close()
-
-    terminal_rule = []
-    for line in terminal_ruletemp:
-        rule = line.replace("\n", "")
-        terminal_rule.append(rule)
-
-    return terminal, terminal_rule
-
 def read_grammar(filename):
 # Membaca file grammar, production rule tiap baris akan diubah menjadi bentuk list 
 # Contoh : Production rule berbentuk A -> B C D akan diubah menjadi ['A', 'B', 'C', 'D'].
@@ -89,7 +63,7 @@ def convert_large_rules(grammar):
                 grammar.insert(rule_index, new_rule)
         y += 1
 
-def convert_unit_productions(grammar):
+def convert_unit_productions(grammar, terminal, terminal_rule):
 # I. S. grammar berbentuk list of list Production Rule suatu CFG
 # F. S. Menangani grammar yang memiliki unit production
 #       Contoh: Terdapat production Rule A -> B dan B -> C D akan diubah 
@@ -98,15 +72,7 @@ def convert_unit_productions(grammar):
 #       ['A','C','D'].
     
     #terminal, terminal_rule = read_terminal('terminal.txt')
-    terminal = ['import', 'from', 'as', 'True', 'False', 'def', 'None', 'with', 'case', 'return', 'continue', 'break', 'pass', 'raise', 'in', 'class', '+', '-', '+', '*', '/', '%', 'and', 'or', 'not', '=', '>', '<', 'if', 'else', 'elif','while', 'for', 'word', 'const', 'input', ':', ',', '.', '[', ']', '(', ')', '=', '==', '!=', '>=', '<=', '>', '<', "'", '"', "'''", '#', 'range', 'print', '!', 'open', 'write', 'num', 'self', 'len', 'IOERROR', 'ValueError', 'ZeroDivisionError', 'ImportError', 'NameError', 'TypeError']
-    terminal_rule = ['BLOCK_CODE', 'IMPORT_FORM', 'IF_STATE', 'IF_STATE_DEF', 'IF_STATE_NESTED', 'IF_ALGORITHM', 'IF_ALGORITHM_DEF', 'IF_ALGORITHM_NESTED', 'IF_CONDITION', 'ELIF_STATE', 'ELIF_STATE_DEF', 'ELIF_STATE_NESTED', 'ELIF_ALGORITHM', 'ELIF_ALGORITHM_DEF', 'ELIF_ALGORITHM_NESTED', 'ELSE_STATE', 'ELSE_STATE_DEF', 'ELSE_STATE_NESTED', 'WHILE_LOOP', 'FOR_FORM', 'FOR_LOOP', 'ALGORITHM_NESTED', 'DEF_STATE', 'DEF_ALGORITHM', 'DEF_RETURN', 'PARAM_STATE', 'PARAM', 'OPERATOR', 'CONDITION', 
-'EXPRESSION', 'RETURN_STATE', 'RETURN_PARAM', 'CLASS_STATE', 'CLASS_ALGORITHM', 'DEF_CLASS_STATE', 'LIST_FORM', 'ELMT_LIST', 'STRING', 'STRING_OF_ALPHA', 'SENTENCE', 'ASSIGNMENT', 'ASSIGN_INTEGER', 'WITH_STATEMENT', 'WRITE_ALGORITHM', 'FLOAT', 'NEGATIVE_FLOAT', 'NEGATIVE_NUM', 'ALPHABET', 'NUM', 'BOOL', 'ARITHMATIC_OPERATOR', 'LOGIC_OPERATOR', 'RELATION_OPERATOR', 'ASSIGN_OPERATOR', 'PRINT', 'COMMENT', 'QUOTATION_COMMENT_SENTENCE', 'RAISE_STATE', 'ERROR', 'QUOTE_MARK', 
-'COMMENT_QUOTATION']
 
-    print("========Terminal rule==================")
-    print(grammar)
-    print()
-    
     j = 0
     while j < len(grammar):
         if ((len(grammar[j]) == 2) and (grammar[j][1] in terminal_rule)):
@@ -137,7 +103,6 @@ def convert_unit_productions(grammar):
             grammar.remove(grammar[j])
         j += 1
 
-    
 
 def search_rule(grammar, rule_nonterm):
 # Mengembalikan index dari rule dengan variabel yang dicari dalam grammar
@@ -180,7 +145,7 @@ def write_to_file(grammar):
     file.close()
 
 
-def convert_grammar(filename):
+def convert_grammar(filename, terminal, terminal_rule):
 # I. S. filename merupakan suatu file berisi production rule suatu CFG
 # F. S. Menulis suatu file dengan nama ditentukan user yang berisi bentuk CNF 
 #       sesuai dengan langkah-langkah penyederhanaan CFG menjadi CNF dari 
@@ -190,10 +155,8 @@ def convert_grammar(filename):
         if (len(rule) == 0):
             grammar.remove(rule)
     
-    convert_unit_productions(grammar)
+    convert_unit_productions(grammar, terminal, terminal_rule)
     convert_large_rules(grammar)
-    
-    print(grammar)
     write_to_file(grammar)
 
 if __name__ == '__main__':

@@ -45,7 +45,7 @@ def cyk_algorithm(grammar, tokenized_input = []):
             print("Accepted")
             break
     else:
-        print("Good bye")
+        print("Syntax Error")
     
 
 
