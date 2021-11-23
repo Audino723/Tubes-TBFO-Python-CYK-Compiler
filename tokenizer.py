@@ -5,7 +5,7 @@ def varname_checker(word):
 	valid_prefix = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I', 'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z', '_']
 
 	if(word[0] in valid_prefix):
-		return 'word'
+		return 'word '
 	else:
 		if(word[0] in number):
 			for i in range(1, len(word)):
@@ -44,71 +44,72 @@ def tokenize_file(filePath):
 
 	string_skip = False
 	for token in tokens:
-		if string_skip:
-			# Handle string
-			if (token == "'") or (token == '"'):
-				string_skip = False
+		if(token!='endline'):
+			if string_skip:
+				# Handle string
+				if (token == "'") or (token == '"'):
+					string_skip = False
+					continue
+				idx = tokens.index(token)
+				tokens.insert(idx, "word")
+				tokens.remove(token)
 				continue
-			idx = tokens.index(token)
-			tokens.insert(idx, "word")
-			tokens.remove(token)
-			continue
-		if token not in terminal:
-			# Berarti token bukan keyword
-			idx = tokens.index(token)
-			converted = varname_checker(token)
-			tokens.insert(idx, converted)
-			tokens.remove(token)
-		elif token == '#':
-			# Berarti komen one liner
-			idx = tokens.index(token)
-			iterate = idx
-			original_len = len(tokens)
-			while (iterate < original_len) and (tokens[idx] != 'endline'):
-				tokens.remove(tokens[idx])
-				iterate += 1
-			if tokens[idx] == "endline":
-				tokens.remove(tokens[idx])
-		elif token == "'":
-			idx = tokens.index(token)
-			if (tokens[idx + 1] == "'") and (tokens[idx + 2] == "'"):
-				# Berarti komen multi-liner
-				for i in range(3):
-					tokens.remove(tokens[idx])
+			if token not in terminal:
+				# Berarti token bukan keyword
+				idx = tokens.index(token)
+				converted = varname_checker(token)
+				tokens.insert(idx, converted)
+				tokens.remove(token)
+			elif token == '#':
+				# Berarti komen one liner
+				idx = tokens.index(token)
 				iterate = idx
 				original_len = len(tokens)
-				while (iterate < original_len) and ((tokens[idx] != "'") or (tokens[idx + 1] != "'") or (tokens[idx + 2] != "'")):
+				while (iterate < original_len) and (tokens[idx] != 'endline'):
 					tokens.remove(tokens[idx])
 					iterate += 1
-				if (tokens):
-					if (tokens[idx] == "'") and (tokens[idx + 1] == "'") and (tokens[idx + 2] == "'"):
-						for i in range(3):
-							tokens.remove(tokens[idx])
-				else:
-					break
-			else:
-				# Berarti string
-				string_skip = True
-		elif token == '"':
-			idx = tokens.index(token)
-			if (tokens[idx + 1] == '"') and (tokens[idx + 2] == '"'):
-				# Berarti komen multiliner
-				for i in range(3):
+				if tokens[idx] == "endline":
 					tokens.remove(tokens[idx])
-				iterate = idx
-				original_len = len(tokens)
-				while (iterate < original_len) and ((tokens[idx] != '"') or (tokens[idx + 1] != '"') or (tokens[idx + 2] != '"')):
-					tokens.remove(tokens[idx])
-					iterate += 1
-				if (tokens):
-					if (tokens[idx] == '"') and (tokens[idx + 1] == '"') and (tokens[idx + 2] == '"'):
-						for i in range(3):
-							tokens.remove(tokens[idx])
+			elif token == "'":
+				idx = tokens.index(token)
+				if (tokens[idx + 1] == "'") and (tokens[idx + 2] == "'"):
+					# Berarti komen multi-liner
+					for i in range(3):
+						tokens.remove(tokens[idx])
+					iterate = idx
+					original_len = len(tokens)
+					while (iterate < original_len) and ((tokens[idx] != "'") or (tokens[idx + 1] != "'") or (tokens[idx + 2] != "'")):
+						tokens.remove(tokens[idx])
+						iterate += 1
+					if (tokens):
+						if (tokens[idx] == "'") and (tokens[idx + 1] == "'") and (tokens[idx + 2] == "'"):
+							for i in range(3):
+								tokens.remove(tokens[idx])
+					else:
+						break
 				else:
-					break
-			else:
-				# Berarti string biasa
-				string_skip = True
+					# Berarti string
+					string_skip = True
+			elif token == '"':
+				idx = tokens.index(token)
+				if (tokens[idx + 1] == '"') and (tokens[idx + 2] == '"'):
+					# Berarti komen multiliner
+					for i in range(3):
+						tokens.remove(tokens[idx])
+					iterate = idx
+					original_len = len(tokens)
+					while (iterate < original_len) and ((tokens[idx] != '"') or (tokens[idx + 1] != '"') or (tokens[idx + 2] != '"')):
+						tokens.remove(tokens[idx])
+						iterate += 1
+					if (tokens):
+						if (tokens[idx] == '"') and (tokens[idx + 1] == '"') and (tokens[idx + 2] == '"'):
+							for i in range(3):
+								tokens.remove(tokens[idx])
+					else:
+						break
+				else:
+					# Berarti string biasa
+					string_skip = True
 
 	while ("endline" in tokens):
 		tokens.remove("endline")
@@ -117,3 +118,5 @@ def tokenize_file(filePath):
 
 
 # tokenize_file('test.txt')
+if __name__=='__main__':
+	print(tokenize_file('test.py'))
