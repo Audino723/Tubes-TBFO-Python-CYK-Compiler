@@ -24,7 +24,7 @@ def tokenize_file(filePath, terminal):
 
 	# Part 1: Ubah raw input jadi array of string
 	replaced = [('(', ' ( '), (')', ' ) '), ('[', ' [ '), (']', ' ] '), ('{', ' { '), ('}', ' } '), (':', ' : '), ('+', ' + '), ('-', ' - '), (
-			'*', ' * '), ('/', ' / '), ('%', ' % '), ('=', ' = '), ('<', ' < '), ('>', ' > '), (',', ' , '), ('.', ' . '), ('"', ' " '), ("'", " ' "), ('\n', '')]
+            '*', ' * '), ('/', ' / '), ('%', ' % '), ('=', ' = '), ('<', ' < '), ('>', ' > '), (',', ' , '), ('.', ' . '), ('"', ' " '), ("'", " ' "), ("#", " # "), ('\n', '')]
 
 	tokens = []
 
@@ -41,6 +41,7 @@ def tokenize_file(filePath, terminal):
 
 	# Part 2: Ubah array of string jadi array of modified string tergantung terminal
 
+	print(tokens)
 	string_skip = False
 	for token in tokens:
 		if(token!='endline'):
@@ -62,12 +63,7 @@ def tokenize_file(filePath, terminal):
 			elif token == '#':
 				# Berarti komen one liner
 				idx = tokens.index(token)
-				iterate = idx
-				original_len = len(tokens)
-				while (iterate < original_len) and (tokens[idx] != 'endline'):
-					tokens.remove(tokens[idx])
-					iterate += 1
-				if tokens[idx] == "endline":
+				while (tokens[idx] != 'endline'):
 					tokens.remove(tokens[idx])
 			elif token == "'":
 				idx = tokens.index(token)
