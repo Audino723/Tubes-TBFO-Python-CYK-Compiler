@@ -3,12 +3,14 @@ def cyk_algorithm(grammar, tokenized_input = []):
     cyk_Table = [[[] for j in range(i)] for i in range(len(tokenized_input), 0, -1)]
 
     #Inisialisasi baris pertama
+    #for rule in grammar:
+        #print(rule[1])
     for i, token in enumerate(tokenized_input):
         for rule in grammar:
-            if rule[1] == token:
+            if rule[1] == token and rule[0] not in cyk_Table[0][i]:
                 cyk_Table[0][i].append(rule[0])
-    
-    #print(cyk_Table)
+    print()
+    print(cyk_Table)
 
     #Mengisi sisa table
     for i in range(1, len(cyk_Table)):
@@ -37,10 +39,9 @@ def cyk_algorithm(grammar, tokenized_input = []):
     print("---------Final-----------")
     for table in cyk_Table:
         print(table)
-        print("=================================")
-    print(grammar[0][0])
+        print("==========================================")
     for item in cyk_Table[-1][0]:
-        if (item == grammar[0][0]):
+        if (item == "BLOCK_CODE"):
             print("Accepted")
             break
     else:

@@ -59,3 +59,4 @@ RAISE_STATE -> raise ERROR ( STRING )
 ERROR -> ZeroDivisionError | ValueError | TypeError | IOERROR | NameError | ImportError
 QUOTE_MARK -> '
 COMMENT_QUOTATION -> QUOTE_MARK QUOTE_MARK QUOTE_MARK
+GREATER_THAN -> >

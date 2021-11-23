@@ -97,7 +97,15 @@ def convert_unit_productions(grammar):
 #       Dalam bentuk list: ['A', 'B'] dan ['B','C','D'] menjadi
 #       ['A','C','D'].
     
-    terminal, terminal_rule = read_terminal('terminal.txt')
+    #terminal, terminal_rule = read_terminal('terminal.txt')
+    terminal = ['import', 'from', 'as', 'True', 'False', 'def', 'None', 'with', 'case', 'return', 'continue', 'break', 'pass', 'raise', 'in', 'class', '+', '-', '+', '*', '/', '%', 'and', 'or', 'not', '=', '>', '<', 'if', 'else', 'elif','while', 'for', 'word', 'const', 'input', ':', ',', '.', '[', ']', '(', ')', '=', '==', '!=', '>=', '<=', '>', '<', "'", '"', "'''", '#', 'range', 'print', '!', 'open', 'write', 'num', 'self', 'len', 'IOERROR', 'ValueError', 'ZeroDivisionError', 'ImportError', 'NameError', 'TypeError']
+    terminal_rule = ['BLOCK_CODE', 'IMPORT_FORM', 'IF_STATE', 'IF_STATE_DEF', 'IF_STATE_NESTED', 'IF_ALGORITHM', 'IF_ALGORITHM_DEF', 'IF_ALGORITHM_NESTED', 'IF_CONDITION', 'ELIF_STATE', 'ELIF_STATE_DEF', 'ELIF_STATE_NESTED', 'ELIF_ALGORITHM', 'ELIF_ALGORITHM_DEF', 'ELIF_ALGORITHM_NESTED', 'ELSE_STATE', 'ELSE_STATE_DEF', 'ELSE_STATE_NESTED', 'WHILE_LOOP', 'FOR_FORM', 'FOR_LOOP', 'ALGORITHM_NESTED', 'DEF_STATE', 'DEF_ALGORITHM', 'DEF_RETURN', 'PARAM_STATE', 'PARAM', 'OPERATOR', 'CONDITION', 
+'EXPRESSION', 'RETURN_STATE', 'RETURN_PARAM', 'CLASS_STATE', 'CLASS_ALGORITHM', 'DEF_CLASS_STATE', 'LIST_FORM', 'ELMT_LIST', 'STRING', 'STRING_OF_ALPHA', 'SENTENCE', 'ASSIGNMENT', 'ASSIGN_INTEGER', 'WITH_STATEMENT', 'WRITE_ALGORITHM', 'FLOAT', 'NEGATIVE_FLOAT', 'NEGATIVE_NUM', 'ALPHABET', 'NUM', 'BOOL', 'ARITHMATIC_OPERATOR', 'LOGIC_OPERATOR', 'RELATION_OPERATOR', 'ASSIGN_OPERATOR', 'PRINT', 'COMMENT', 'QUOTATION_COMMENT_SENTENCE', 'RAISE_STATE', 'ERROR', 'QUOTE_MARK', 
+'COMMENT_QUOTATION']
+
+    print("========Terminal rule==================")
+    print(grammar)
+    print()
     
     j = 0
     while j < len(grammar):
@@ -129,6 +137,7 @@ def convert_unit_productions(grammar):
             grammar.remove(grammar[j])
         j += 1
 
+    
 
 def search_rule(grammar, rule_nonterm):
 # Mengembalikan index dari rule dengan variabel yang dicari dalam grammar
@@ -183,10 +192,12 @@ def convert_grammar(filename):
     
     convert_unit_productions(grammar)
     convert_large_rules(grammar)
+    
+    print(grammar)
     write_to_file(grammar)
 
 if __name__ == '__main__':
     # filename = input("Enter the Context Free Grammar file to convert: ")
     # convert_grammar(filename)
-    convert_grammar('cfg.txt')
+    convert_grammar('cfg_revise.txt')
 

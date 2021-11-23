@@ -5,7 +5,7 @@ def varname_checker(word):
 	valid_prefix = ['a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I', 'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z', '_']
 
 	if(word[0] in valid_prefix):
-		return 'word '
+		return 'word'
 	else:
 		if(word[0] in number):
 			for i in range(1, len(word)):
