@@ -1,8 +1,6 @@
 def find_accuracy(y_predict, y_test):
-	clut = {}
 	for i,y in enumerate(y_test):
 		if y not in clut:
-			temp = {}
 			temp[y_predict[i]] = 1
 			clut[y] = temp
 		else:
