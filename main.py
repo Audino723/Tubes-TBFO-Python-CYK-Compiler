@@ -36,6 +36,7 @@ def Tes_Satu():
     #input_file = input('Enter the input file to validate: ')
 
     input_file = "test.py"
+    # input_file = "inputAcc.py"
     #input_file = "TesCase\TC03.py"
     tokenized_input = tokenize_file(input_file, terminal)
  
