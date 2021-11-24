@@ -6,6 +6,10 @@ def varname_checker(word):
                     'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z', '_']
 
     if(word[0] in valid_prefix):
+        for i in range(1, len(word)):
+            if((word[i] not in valid_prefix) and (word[i] not in number)):
+                return 'undef'
+                
         return 'word'
     else:
         if(word[0] in number):
