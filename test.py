@@ -1,5 +1,7 @@
-from os import truncate
+def test():
+    '''
+    Halo
+    test
+    '''
 
-
-if True:
-    print()
+    print(a)

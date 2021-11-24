@@ -23,29 +23,29 @@ def Tes_Case():
             print()
             
 def Tes_Satu():
-    # grammar = read_grammar('cfg_revise.txt')
-    # print("======CFG Grammar=========")
-    # for gra in grammar:
-    #     print(gra)
-
     convert_grammar('cfg_revise.txt', terminal, terminal_rule)
     grammar = read_grammar('cnf.txt')
-    # print("======CNF Grammar=========")
-    # for gra in grammar:
-    #     print(gra)
-    #input_file = input('Enter the input file to validate: ')
 
-    input_file = "test.py"
-    #input_file = "inputAcc.py"
-   # input_file = "TesCase\TC01.py"    
+    input_file = "TesCase/TC01.py" 
     tokenized_input = tokenize_file(input_file, terminal)
  
-    print("=============Tokenized Input==========")
-    print(tokenized_input)
+    # print("=============Tokenized Input==========")
+    # print(tokenized_input)
+    cyk_algorithm(grammar, tokenized_input, stat = False)
 
 
-    cyk_algorithm(grammar, tokenized_input, stat = True)
-    #python_cyk_algorithm(grammar, 'terminal.txt', input_file)
+def Tes_Banyak():
+    convert_grammar('cfg_revise.txt', terminal, terminal_rule)
+    grammar = read_grammar('cnf.txt')
+
+    input_file = ["TesCase/TC01.py", "TesCase/TC02.py",
+                  "TesCase/TC03.py", "TesCase/TC04.py", "TesCase/TC05.py", "TesCase/TC06.py", "TesCase/TC07.py", "TesCase/TC08.py", "TesCase/TC09.py", "TesCase/TC10.py"]
+
+    for file in input_file:
+        tokenized_input = tokenize_file(file, terminal)
+        print(file)
+        cyk_algorithm(grammar, tokenized_input, stat=False)
+    
 
 if __name__ == '__main__':
-    Tes_Satu()
+    Tes_Banyak()

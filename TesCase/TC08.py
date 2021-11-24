@@ -17,7 +17,7 @@ if belajar = True:
 	else:
 		tubes_selesai = False
 else:
-	tubes_selesai = false
+	tubes_selesai = false 
 	
 if tubes_selesai:
 	print('Hore tubes kamu selesai! :D')
