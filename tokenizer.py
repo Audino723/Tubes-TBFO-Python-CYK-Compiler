@@ -42,7 +42,11 @@ def tokenize_file(filePath, terminal):
 
     # Part 2: Ubah array of string jadi array of modified string tergantung terminal
 
+<<<<<<< HEAD
     #print(tokens)
+=======
+    # print(tokens)
+>>>>>>> 02a2cf99c9c0590b1685c35192e0f88604eebe47
 
     for token in tokens:
         if(token != 'endline'):
@@ -55,8 +59,11 @@ def tokenize_file(filePath, terminal):
             elif token == '#':
                 # Berarti komen one liner
                 idx = tokens.index(token)
-                while (tokens[idx] != 'endline'):
-                    tokens.remove(tokens[idx])
+                idxEnd = idx+1
+                while (tokens[idxEnd] != 'endline'):
+                    idxEnd+=1
+                del tokens[idx:idxEnd]
+                
             elif token == "'":
                 idx = tokens.index(token)
                 if (tokens[idx + 1] == "'") and (tokens[idx + 2] == "'"):
