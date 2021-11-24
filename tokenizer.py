@@ -42,11 +42,7 @@ def tokenize_file(filePath, terminal):
 
     # Part 2: Ubah array of string jadi array of modified string tergantung terminal
 
-<<<<<<< HEAD
-    #print(tokens)
-=======
     # print(tokens)
->>>>>>> 02a2cf99c9c0590b1685c35192e0f88604eebe47
 
     for token in tokens:
         if(token != 'endline'):

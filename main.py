@@ -37,7 +37,7 @@ def Tes_Satu():
 
     input_file = "test.py"
     #input_file = "inputAcc.py"
-    input_file = "TesCase\TC01.py"    
+   # input_file = "TesCase\TC01.py"    
     tokenized_input = tokenize_file(input_file, terminal)
  
     print("=============Tokenized Input==========")
