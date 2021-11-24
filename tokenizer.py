@@ -42,20 +42,10 @@ def tokenize_file(filePath, terminal):
 
     # Part 2: Ubah array of string jadi array of modified string tergantung terminal
 
-    # print(tokens)
+    print(tokens)
 
-    string_skip = False
     for token in tokens:
         if(token != 'endline'):
-            if string_skip:
-                # Handle string
-                if (token == "'") or (token == '"'):
-                    string_skip = False
-                    continue
-                idx = tokens.index(token)
-                tokens.insert(idx, "word")
-                tokens.remove(token)
-                continue
             if token not in terminal:
                 # Berarti token bukan keyword
                 idx = tokens.index(token)
@@ -77,27 +67,73 @@ def tokenize_file(filePath, terminal):
 
                     if(idxEnd == len(tokens)-1):
                         del tokens[idx:]
+                        tokens.append('undef')
                     else:
                         del tokens[idx:idxEnd+3]
 
                 else:
                     # Berarti string
-                    string_skip = True
+                    backslash = False
+                    idxEnd = idx+1
+                    while(not(tokens[idxEnd]=="'") and idxEnd<len(tokens)-1):
+                        if(tokens[idxEnd]=='\\'):
+                            backslash=True
+                        idxEnd+=1
+                    
+                    if((idxEnd == len(tokens)-1)):
+                        if tokens[idxEnd] != "'":
+                            del tokens[idx:]
+                            tokens.append('undef')
+                        else:
+                            del tokens[idx:]
+                            if backslash == True:
+                                tokens.insert(idx, 'undef')
+                            else:
+                                tokens.insert(idx, 'word')
+                    else:
+                        del tokens[idx:idxEnd+1]
+                        if backslash==True:
+                            tokens.insert(idx, 'undef')
+                        else:
+                            tokens.insert(idx, 'word')
             elif token == '"':
                 idx = tokens.index(token)
                 if (tokens[idx + 1] == '"') and (tokens[idx + 2] == '"'):
                     # Berarti komen multiliner
                     idxEnd = idx+3
                     while(not((tokens[idxEnd] == '"') and (tokens[idxEnd+1] == '"') and (tokens[idxEnd+2] == '"')) and idxEnd < len(tokens)-1):
+                        if(tokens[idxEnd] == '\\'):
+                            backslash = True
                         idxEnd += 1
 
                     if(idxEnd == len(tokens)-1):
                         del tokens[idx:]
+                        tokens.append('undef')
                     else:
                         del tokens[idx:idxEnd+3]
                 else:
                     # Berarti string biasa
-                    string_skip = True
+                    backslash = False
+                    idxEnd = idx+1
+                    while(not(tokens[idxEnd] == '"') and idxEnd < len(tokens)-1):
+                        idxEnd += 1
+
+                    if((idxEnd == len(tokens)-1)):
+                        if tokens[idxEnd] != '"':
+                            del tokens[idx:]
+                            tokens.append('undef')
+                        else:
+                            del tokens[idx:]
+                            if backslash == True:
+                                tokens.insert(idx, 'undef')
+                            else:
+                                tokens.insert(idx, 'word')
+                    else:
+                        del tokens[idx:idxEnd+1]
+                        if backslash == True:
+                            tokens.insert(idx, 'undef')
+                        else:
+                            tokens.insert(idx, 'word')
 
     while ("endline" in tokens):
         tokens.remove("endline")
