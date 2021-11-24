@@ -25,6 +25,7 @@ def Tes_Satu():
     grammar = read_grammar('cnf.txt')
 
     input_file = input('Masukkan nama file: ')
+    # input_file = 'TesCase/TC10.py'
     tokenized_input = tokenize_file(input_file, terminal)
  
     # print("=============Tokenized Input==========")
