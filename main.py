@@ -20,16 +20,6 @@ def Tes_Case():
             tokenized_input = tokenize_file(input_file, terminal)
             cyk_algorithm(grammar, tokenized_input)
             print()
-            
-def Tes_Banyak():
-    convert_grammar('cfg.txt', terminal, terminal_rule)
-    grammar = read_grammar('cnf.txt')
-
-    input_file = ["TesCase/TC01.py", "TesCase/TC02.py",
-                  "TesCase/TC03.py", "TesCase/TC04.py", "TesCase/TC05.py", "TesCase/TC06.py", "TesCase/TC07.py", "TesCase/TC08.py", "TesCase/TC09.py", "TesCase/TC10.py"]
-
-    check_table, isAccepted = cyk_algorithm(grammar, tokenized_input, stat = False)
-    line_error_checker(check_table, tokenized_line, isAccepted)
 
 def python_checker():
     # Coverting CFG to CNF
