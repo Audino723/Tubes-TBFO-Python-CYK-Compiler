@@ -42,7 +42,7 @@ def cyk_algorithm(grammar, tokenized_input = [], stat = False):
                 # print("--------------")
     
     #Check if accepted
-    print("---------Final-----------")
+    # print("---------Final-----------")
     if stat:
         for table in cyk_Table:
             print(table)

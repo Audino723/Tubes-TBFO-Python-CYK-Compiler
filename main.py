@@ -8,8 +8,6 @@ terminal_rule = ['NUM', 'BOOL', 'ALPHABET', 'QUOTE_MARK', 'POINT', 'IF', 'ELIF',
 
 import os
 
-
-
 def Tes_Case():
     convert_grammar('cfg_revise.txt', terminal, terminal_rule)
     grammar = read_grammar('cnf.txt')
@@ -26,7 +24,7 @@ def Tes_Satu():
     convert_grammar('cfg_revise.txt', terminal, terminal_rule)
     grammar = read_grammar('cnf.txt')
 
-    input_file = "TesCase/TC01.py" 
+    input_file = input('Masukkan nama file: ')
     tokenized_input = tokenize_file(input_file, terminal)
  
     # print("=============Tokenized Input==========")
@@ -48,4 +46,4 @@ def Tes_Banyak():
     
 
 if __name__ == '__main__':
-    Tes_Banyak()
+    Tes_Satu()

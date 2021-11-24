@@ -42,7 +42,7 @@ def tokenize_file(filePath, terminal):
 
     # Part 2: Ubah array of string jadi array of modified string tergantung terminal
 
-    print(tokens)
+    # print(tokens)
 
     for token in tokens:
         if(token != 'endline'):
@@ -151,8 +151,8 @@ def tokenize_file(filePath, terminal):
                         else:
                             tokens.insert(idx, 'word')
 
-    print()
-    print(tokens)
+    # print()
+    # print(tokens)
     while ("endline" in tokens):
         tokens.remove("endline")
 
