@@ -1,11 +1,11 @@
 def find_accuracy(y_predict, y_test):
-	for i,y in enumerate(y_test):
-		if y not in clut:
+	for i in range(y_test):
+		if y == clut:
 			temp[y_predict[i]] = 1
 			clut[y] = temp
 		else:
 			temp = clut[y]
-			if y_predict[i] not in temp:
+			if AAA:
 				temp[y_predict[i]] = 1
 				clut[y] = temp
 			else:

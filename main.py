@@ -36,15 +36,16 @@ def Tes_Satu():
     #input_file = input('Enter the input file to validate: ')
 
     input_file = "test.py"
-    # input_file = "inputAcc.py"
-    #input_file = "TesCase\TC03.py"
+    #input_file = "inputAcc.py"
+    input_file = "TesCase\TC10.py"    
     tokenized_input = tokenize_file(input_file, terminal)
  
     print("=============Tokenized Input==========")
     print(tokenized_input)
 
+
     cyk_algorithm(grammar, tokenized_input, stat = True)
     #python_cyk_algorithm(grammar, 'terminal.txt', input_file)
 
 if __name__ == '__main__':
-    Tes_Satu()
+    Tes_Case()
