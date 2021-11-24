@@ -70,11 +70,11 @@ def cyk_algorithm(grammar, tokenized_input, stat = False):
 
     return check_Table, isAccepted
     
-def line_error_checker(check_table, tokenized_line, isAccepted):
+def line_error_checker(check_table, tokenized_lines, isAccepted):
     if not isAccepted:
         error_lines = []
         for i, isCorrect in enumerate(check_table):
-            if not isCorrect and tokenized_line[i] not in error_lines:
-                error_lines.append(tokenized_line[i])
+            if not isCorrect and tokenized_lines[i] not in error_lines:
+                error_lines.append(tokenized_lines[i])
 
         print("Possible Error Lines : ", *error_lines)

@@ -40,12 +40,7 @@ def tokenize_file(filePath, terminal):
 
     tokens = ' '.join(tokens).split()
 
-    
-
     # Part 2: Ubah array of string jadi array of modified string tergantung terminal
-
-    #print(tokens)
-
     # print(tokens)
     
     for token in tokens:
@@ -173,7 +168,6 @@ def tokenize_file(filePath, terminal):
     return tokens, token_lines
 
 
-# tokenize_file('test.txt')
 if __name__ == '__main__':
     terminal = ['import', 'from', 'as', 'True', 'False', 'def', 'None', 'with', 'case', 'return', 'continue', 'break', 'pass', 'raise', 'in', 'class', '+', '-', '+', '*', '/', '%', 'and', 'or', 'not', '=', '>', '<', 'if', 'else', 'elif', 'while',
                 'for', 'word', 'const', 'input', ':', ',', '.', '[', ']', '(', ')', "'", '"', "'''", '#', 'range', 'print', '!', 'open', 'write', 'num', 'self', 'len', 'IOERROR', 'ValueError', 'ZeroDivisionError', 'ImportError', 'NameError', 'TypeError']

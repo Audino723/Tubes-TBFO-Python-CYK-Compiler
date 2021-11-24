@@ -113,8 +113,6 @@ def search_rule(grammar, rule_nonterm):
 
     return idx_rule
 
-
-
 def write_to_file(grammar):
 # I. S. grammar berbentuk list of list Production Rule suatu CFG
 # F. S. Menuliskan grammar dalam bentuk dalam file .txt
@@ -129,8 +127,6 @@ def write_to_file(grammar):
                         rule.append(line[i])
                     grammar.remove(line)
             
-
-
     # filename = input("Enter the output file name: ")
     # file = open('filename', 'w')
     file = open('cnf.txt', 'w')
@@ -141,7 +137,6 @@ def write_to_file(grammar):
             file.write(" {}".format(rule[i]))
         file.write("\n")
     file.close()
-
 
 def convert_grammar(filename, terminal, terminal_rule):
 # I. S. filename merupakan suatu file berisi production rule suatu CFG
@@ -160,5 +155,5 @@ def convert_grammar(filename, terminal, terminal_rule):
 if __name__ == '__main__':
     # filename = input("Enter the Context Free Grammar file to convert: ")
     # convert_grammar(filename)
-    convert_grammar('cfg_revise.txt')
+    convert_grammar('cfg.txt')
 
