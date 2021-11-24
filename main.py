@@ -1,4 +1,4 @@
-from cyk import cyk_algorithm
+from cyk import cyk_algorithm, line_error_checker
 from CFG2CNF import read_grammar
 from tokenizer import tokenize_file
 from CFG2CNF import convert_grammar
@@ -38,13 +38,17 @@ def Tes_Satu():
     input_file = "test.py"
     #input_file = "inputAcc.py"
    # input_file = "TesCase\TC01.py"    
-    tokenized_input = tokenize_file(input_file, terminal)
+    tokenized_input, tokenized_line = tokenize_file(input_file, terminal)
  
     print("=============Tokenized Input==========")
     print(tokenized_input)
+    print(len(tokenized_input))
+    print(tokenized_line)
+    print(len(tokenized_line))
 
 
-    cyk_algorithm(grammar, tokenized_input, stat = True)
+    check_table = cyk_algorithm(grammar, tokenized_input, stat = True)
+    line_error_checker(check_table, tokenized_line)
     #python_cyk_algorithm(grammar, 'terminal.txt', input_file)
 
 if __name__ == '__main__':

@@ -1,1 +1,2 @@
-i
+
+    print(len(tokenized_input))

@@ -40,10 +40,13 @@ def tokenize_file(filePath, terminal):
 
     tokens = ' '.join(tokens).split()
 
+    
+
     # Part 2: Ubah array of string jadi array of modified string tergantung terminal
 
-    # print(tokens)
 
+    # print(tokens)
+    
     for token in tokens:
         if(token != 'endline'):
             if token not in terminal:
@@ -137,11 +140,25 @@ def tokenize_file(filePath, terminal):
                             tokens.insert(idx, 'undef')
                         else:
                             tokens.insert(idx, 'word')
+            
+        
+    token_lines = []
+    k = 1
+    for token in tokens:
+        if token == 'endline':
+            k += 1
+            token_lines.append([-1, token])
+        else:
+            token_lines.append([k, token])
+
+    
 
     while ("endline" in tokens):
-        tokens.remove("endline")
+        tokens.remove("endline")   
+        token_lines.remove(-1)
 
-    return tokens
+
+    return tokens, token_lines
 
 
 # tokenize_file('test.txt')
