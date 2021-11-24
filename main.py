@@ -37,7 +37,7 @@ def Tes_Satu():
 
     input_file = "test.py"
     #input_file = "inputAcc.py"
-    input_file = "TesCase\TC10.py"    
+    input_file = "TesCase\TC01.py"    
     tokenized_input = tokenize_file(input_file, terminal)
  
     print("=============Tokenized Input==========")
@@ -48,4 +48,4 @@ def Tes_Satu():
     #python_cyk_algorithm(grammar, 'terminal.txt', input_file)
 
 if __name__ == '__main__':
-    Tes_Case()
+    Tes_Satu()
