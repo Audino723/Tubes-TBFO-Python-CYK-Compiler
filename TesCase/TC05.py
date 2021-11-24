@@ -18,10 +18,11 @@ class Car:
 		
 	def fill_gas(self, value):
 		self.gas += value
-		
+	
 	def asd(self, amin):
-		if gas <= 0:
+		if self.gas <= 0:
 			print("Asdfad")
 		else:
 			print('The car is starting...')
+	
 	

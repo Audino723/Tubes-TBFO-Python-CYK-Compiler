@@ -23,33 +23,17 @@ def Tes_Case():
             print()
             
 def Tes_Satu():
-    # grammar = read_grammar('cfg_revise.txt')
-    # print("======CFG Grammar=========")
-    # for gra in grammar:
-    #     print(gra)
-
     convert_grammar('cfg_revise.txt', terminal, terminal_rule)
     grammar = read_grammar('cnf.txt')
-    # print("======CNF Grammar=========")
-    # for gra in grammar:
-    #     print(gra)
-    #input_file = input('Enter the input file to validate: ')
 
-    input_file = "test.py"
-    #input_file = "inputAcc.py"
-   # input_file = "TesCase\TC01.py"    
+    input_file = "test.py" 
     tokenized_input, tokenized_line = tokenize_file(input_file, terminal)
- 
-    print("=============Tokenized Input==========")
-    print(tokenized_input)
-    print(len(tokenized_input))
-    print(tokenized_line)
-    print(len(tokenized_line))
 
+    input_file = ["TesCase/TC01.py", "TesCase/TC02.py",
+                  "TesCase/TC03.py", "TesCase/TC04.py", "TesCase/TC05.py", "TesCase/TC06.py", "TesCase/TC07.py", "TesCase/TC08.py", "TesCase/TC09.py", "TesCase/TC10.py"]
 
-    check_table = cyk_algorithm(grammar, tokenized_input, stat = True)
-    line_error_checker(check_table, tokenized_line)
-    #python_cyk_algorithm(grammar, 'terminal.txt', input_file)
+    check_table, isAccepted = cyk_algorithm(grammar, tokenized_input, stat = False)
+    line_error_checker(check_table, tokenized_line, isAccepted)
 
 if __name__ == '__main__':
     Tes_Satu()

@@ -44,6 +44,7 @@ def tokenize_file(filePath, terminal):
 
     # Part 2: Ubah array of string jadi array of modified string tergantung terminal
 
+    #print(tokens)
 
     # print(tokens)
     
@@ -68,7 +69,10 @@ def tokenize_file(filePath, terminal):
                 if (tokens[idx + 1] == "'") and (tokens[idx + 2] == "'"):
                     # Berarti komen multi-liner
                     idxEnd = idx+3
+                    endLineCount = 0
                     while(not((tokens[idxEnd] == "'") and (tokens[idxEnd+1] == "'") and (tokens[idxEnd+2] == "'")) and idxEnd < len(tokens)-1):
+                        if(tokens[idxEnd]=='endline'):
+                            endLineCount += 1
                         idxEnd += 1
 
                     if(idxEnd == len(tokens)-1):
@@ -76,6 +80,9 @@ def tokenize_file(filePath, terminal):
                         tokens.append('undef')
                     else:
                         del tokens[idx:idxEnd+3]
+                    
+                    for i in range(endLineCount):
+                        tokens.insert(idx, 'endline')
 
                 else:
                     # Berarti string
@@ -104,12 +111,13 @@ def tokenize_file(filePath, terminal):
                             tokens.insert(idx, 'word')
             elif token == '"':
                 idx = tokens.index(token)
-                if (tokens[idx + 1] == '"') and (tokens[idx + 2] == '"'):
-                    # Berarti komen multiliner
+                if (tokens[idx + 1] == "'") and (tokens[idx + 2] == "'"):
+                    # Berarti komen multi-liner
                     idxEnd = idx+3
+                    endLineCount = 0
                     while(not((tokens[idxEnd] == '"') and (tokens[idxEnd+1] == '"') and (tokens[idxEnd+2] == '"')) and idxEnd < len(tokens)-1):
-                        if(tokens[idxEnd] == '\\'):
-                            backslash = True
+                        if(tokens[idxEnd] == 'endline'):
+                            endLineCount += 1
                         idxEnd += 1
 
                     if(idxEnd == len(tokens)-1):
@@ -117,11 +125,17 @@ def tokenize_file(filePath, terminal):
                         tokens.append('undef')
                     else:
                         del tokens[idx:idxEnd+3]
+
+                    for i in range(endLineCount):
+                        tokens.insert(idx, 'endline')
+
                 else:
-                    # Berarti string biasa
+                    # Berarti string
                     backslash = False
                     idxEnd = idx+1
                     while(not(tokens[idxEnd] == '"') and idxEnd < len(tokens)-1):
+                        if(tokens[idxEnd] == '\\'):
+                            backslash = True
                         idxEnd += 1
 
                     if((idxEnd == len(tokens)-1)):
@@ -147,11 +161,9 @@ def tokenize_file(filePath, terminal):
     for token in tokens:
         if token == 'endline':
             k += 1
-            token_lines.append([-1, token])
+            token_lines.append(-1)
         else:
-            token_lines.append([k, token])
-
-    
+            token_lines.append(k)
 
     while ("endline" in tokens):
         tokens.remove("endline")   
