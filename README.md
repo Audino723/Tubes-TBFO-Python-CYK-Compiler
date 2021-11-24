@@ -1,4 +1,4 @@
-# Tugas Besar TBFO IF2124 2021/2022
+# Python Compiler Based on FA and CFG
 
 > _Program Ini Dibuat Untuk Memenuhi Tugas Perkuliahan Mata Kuliah Teori Bahasa Formal dan Otomata(IF2124)_ 
 >
